@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>生成hexo文章meta数据</title>
+</head>
+<body>
+<label>
+    <input style="height:30px;" type="text" id="filename">
+    输入文件名
+</label>
+<br><br>
+<label>
+    <input style="height:30px" type="text" id="title">
+    输入文章标题
+</label>
+<br><br>
+<label>
+    <input style="height:40px;" type="text" id="catg">
+    输入文章分类(多个请用空格隔开)
+</label>
+<br><br>
+<label>
+    <input style="height:40px;" type="text" id="tags">
+    输入文章标签(多个请用空格隔开)
+</label>
+<br><br>
+<button style="height:50px;width:100px;background-color:#66ccff;border:0;" type="button" onclick="generate()">生成</button>
+</body>
+<script>
+function generate(){
+    var filename1= document.getElementById('filename').value;
+    var title1 = document.getElementById('title').value;
+    var categ1 = document.getElementById('catg').value,categall='';
+    var categsplit=categ1.split(' ');
+    var tag1=document.getElementById('tags').value;
+    var tags=tag1.split(' ');
+    var result=[],tagall='';
+    var date1=new Date();
+    for (let opera of categsplit) {
+        opera='    -'+opera+'\n';
+        categall+=opera;
+    }
+    for (let opera of tags) {
+        opera='    -'+opera+'\n';
+        tagall+=opera;
+    }
+    result='---'+'\n'+'title:'+title1+'\n'+'date:'+date1.getFullYear()+'-'+date1.getMonth()+'-'+date1.getDay()+' '
+    +date1.getHours()+':'+date1.getMinutes()+':'+date1.getSeconds()+'\n'+'tags:\n'+tagall+'category:\n'+categall+"---"
+    const file = new File([result], filename1+'.md', { type: "text/plain" });
+    //console.log(result);
+    const url = URL.createObjectURL(file);
+    // 创建一个a标签
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = file.name;
+    a.click();
+}
+</script>
+</html>
