@@ -45,8 +45,8 @@ function generate(){
         opera='    -'+opera+'\n';
         tagall+=opera;
     }
-    result='---'+'\n'+'title:'+title1+'\n'+'date:'+date1.getFullYear()+'-'+date1.getMonth()+'-'+date1.getDay()+' '
-    +date1.getHours()+':'+date1.getMinutes()+':'+date1.getSeconds()+'\n'+'tags:\n'+tagall+'category:\n'+categall+"---"
+    result='---'+'\n'+'title: '+title1+'\n'+'date: '+date1.getFullYear()+'-'+date1.getMonth()+'-'+date1.getDay()+' '
+    +date1.getHours()+':'+date1.getMinutes()+':'+date1.getSeconds()+'\n'+'tags: \n'+tagall+'category: \n'+categall+"---"
     const file = new File([result], filename1+'.md', { type: "text/plain" });
     //console.log(result);
     const url = URL.createObjectURL(file);
